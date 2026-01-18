@@ -1,3 +1,4 @@
+/* Copyright 2026 YourPc */
 package pl.dawid0604.yourpc;
 
 import org.junit.jupiter.api.Test;
@@ -8,8 +9,6 @@ import org.springframework.context.annotation.Import;
 @SpringBootTest
 class YourPcApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
-
+  @Test
+  void contextLoads() {}
 }
