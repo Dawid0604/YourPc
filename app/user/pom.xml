@@ -10,7 +10,7 @@
     </parent>
     <artifactId>user</artifactId>
 
-    <name>YourPc - user</name>
+    <name>${project.organization.name} - user</name>
 
     <dependencies>
         <dependency>
