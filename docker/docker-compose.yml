@@ -1,0 +1,59 @@
+name: "YourPc"
+
+volumes:
+  yourpc-db-volume:
+  yourpc-pgadmin-volume:
+
+services:
+  yourpc-db-postgres:
+    image: postgres:17-alpine
+    container_name: yourpc-db-postgres
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_USER_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB_NAME}
+
+    volumes:
+      - yourpc-db-volume:/var/lib/postgresql/data
+
+    healthcheck:
+      test: >
+        bash -c "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB} &&
+        psql -U $${POSTGRES_USER} -d $${POSTGRES_DB} -c 'SELECT 1'"
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+    networks:
+      - yourpc-network
+
+  yourpc-pgadmin:
+    build: pgadmin
+    container_name: yourpc-pgadmin
+    restart: always
+    user: root
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
+      - PGADMIN_CONFIG_SERVER_MODE=False
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_USER_PASSWORD=${POSTGRES_USER_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB_NAME}
+      - POSTGRES_HOST=yourpc-db-postgres
+      - POSTGRES_PORT=${POSTGRES_PORT}
+      - PGADMIN_SERVER_NAME=${PGADMIN_SERVER_NAME}
+
+    volumes:
+      - yourpc-pgadmin-volume:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+    networks:
+      - yourpc-network
+    depends_on:
+      yourpc-db-postgres:
+        condition: service_healthy
+
+networks:
+  yourpc-network:
+    driver: bridge
+    name: yourpc-network
