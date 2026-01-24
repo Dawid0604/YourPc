@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<header th:fragment="header" class="sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" th:href="@{/}">
+                <i class="bi bi-pc-display-horizontal fs-3 me-2 text-primary"></i>
+                <span class="fw-bold">YourPc Forum</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarMain" aria-controls="navbarMain"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" th:href="@{/}">
+                            <i class="bi bi-house-door me-1"></i>Strona główna
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/sections}">
+                            <i class="bi bi-grid-3x3-gap me-1"></i>Wszystkie sekcje
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/recent}">
+                            <i class="bi bi-clock-history me-1"></i>Ostatnie posty
+                        </a>
+                    </li>
+                </ul>
+
+                <form class="d-flex me-3" role="search" th:action="@{/search}" method="get">
+                    <div class="input-group">
+                        <input class="form-control" type="search" name="q"
+                               placeholder="Szukaj na forum..." aria-label="Szukaj">
+                        <button class="btn btn-outline-primary" type="submit">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </form>
+
+                <div class="d-flex">
+                    <a th:href="@{/login}" class="btn btn-outline-light me-2">
+                        <i class="bi bi-box-arrow-in-right me-1"></i>Zaloguj
+                    </a>
+                    <a th:href="@{/register}" class="btn btn-primary">
+                        <i class="bi bi-person-plus me-1"></i>Rejestracja
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="bg-light border-bottom py-2">
+        <div class="container-fluid">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item">
+                        <a th:href="@{/}"><i class="bi bi-house-door"></i></a>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</header>
+</html>

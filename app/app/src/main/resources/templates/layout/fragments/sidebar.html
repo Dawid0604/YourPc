@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<aside th:fragment="sidebar" class="col-lg-3">
+
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <i class="bi bi-bar-chart-fill me-2"></i>
+            <strong>Statystyki</strong>
+        </div>
+        <div class="card-body">
+            <ul class="list-unstyled mb-0">
+                <li class="mb-2 d-flex justify-content-between">
+                    <span><i class="bi bi-people-fill text-primary me-2"></i>Użytkowników:</span>
+                    <strong th:text="${stats?.totalUsers ?: '1,234'}">1,234</strong>
+                </li>
+                <li class="mb-2 d-flex justify-content-between">
+                    <span><i class="bi bi-chat-dots-fill text-success me-2"></i>Postów:</span>
+                    <strong th:text="${stats?.totalPosts ?: '45,678'}">45,678</strong>
+                </li>
+                <li class="mb-2 d-flex justify-content-between">
+                    <span><i class="bi bi-file-earmark-text-fill text-info me-2"></i>Tematów:</span>
+                    <strong th:text="${stats?.totalTopics ?: '8,901'}">8,901</strong>
+                </li>
+                <li class="d-flex justify-content-between">
+                    <span><i class="bi bi-person-check-fill text-warning me-2"></i>Online:</span>
+                    <strong class="text-success" th:text="${stats?.usersOnline ?: '42'}">42</strong>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-success text-white">
+            <i class="bi bi-person-plus-fill me-2"></i>
+            <strong>Najnowsi członkowie</strong>
+        </div>
+        <div class="card-body p-2">
+            <ul class="list-unstyled mb-0">
+                <li class="d-flex align-items-center py-2 border-bottom" th:each="user : ${newUsers ?: {}}">
+                    <img th:src="${user.avatar ?: '/images/default-avatar.png'}"
+                         class="rounded-circle me-2"
+                         width="32" height="32" alt="Avatar">
+                    <div class="flex-grow-1">
+                        <a th:href="@{/user/{id}(id=${user.id})}"
+                           th:text="${user.username}"
+                           class="text-decoration-none">Username</a>
+                        <small class="text-muted d-block" th:text="${user.joinedDate}">2 godziny temu</small>
+                    </div>
+                </li>
+                <li class="d-flex align-items-center py-2" th:if="${#lists.isEmpty(newUsers ?: {})}">
+                    <img src="/static/images/default-avatar.png" class="rounded-circle me-2"
+                         width="32" height="32" alt="Avatar">
+                    <div class="flex-grow-1">
+                        <a href="#" class="text-decoration-none">TechMaster</a>
+                        <small class="text-muted d-block">2 godziny temu</small>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-info text-white">
+            <i class="bi bi-tags-fill me-2"></i>
+            <strong>Popularne tagi</strong>
+        </div>
+        <div class="card-body">
+            <div class="d-flex flex-wrap gap-2">
+                <a href="#" class="badge bg-secondary text-decoration-none">Java</a>
+                <a href="#" class="badge bg-secondary text-decoration-none">Spring Boot</a>
+                <a href="#" class="badge bg-secondary text-decoration-none">Python</a>
+                <a href="#" class="badge bg-secondary text-decoration-none">JavaScript</a>
+                <a href="#" class="badge bg-secondary text-decoration-none">React</a>
+                <a href="#" class="badge bg-secondary text-decoration-none">Docker</a>
+                <a href="#" class="badge bg-secondary text-decoration-none">SQL</a>
+                <a href="#" class="badge bg-secondary text-decoration-none">Git</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-4 shadow-sm border-warning">
+        <div class="card-body text-center bg-light">
+            <i class="bi bi-megaphone-fill text-warning fs-1"></i>
+            <h6 class="mt-2">Dołącz do społeczności!</h6>
+            <p class="small text-muted mb-2">
+                Zarejestruj się i dziel swoją wiedzą z innymi
+            </p>
+            <a th:href="@{/register}" class="btn btn-warning btn-sm">
+                <i class="bi bi-pencil-square me-1"></i>Załóż konto
+            </a>
+        </div>
+    </div>
+</aside>
+</html>

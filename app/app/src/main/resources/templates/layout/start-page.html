@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="start-page">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card bg-gradient shadow-lg border-0"
+                 style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                <div class="card-body text-black text-center py-5">
+                    <i class="bi bi-pc-display fs-1 mb-3"></i>
+                    <h1 class="display-5 fw-bold mb-3">Witaj w YourPc Forum!</h1>
+                    <p class="lead mb-4">
+                        Największa społeczność entuzjastów technologii, programowania i sprzętu komputerowego w Polsce
+                    </p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a th:href="@{/register}" class="btn btn-light btn-lg">
+                            <i class="bi bi-rocket-takeoff me-2"></i>Dołącz teraz
+                        </a>
+                        <a th:href="@{#sections}" class="btn btn-outline-light btn-lg text-black">
+                            <i class="bi bi-compass me-2"></i>Przeglądaj sekcje
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <main class="col-lg-9">
+            <div id="sections" class="mb-4">
+                <h2 class="mb-4 d-flex align-items-center">
+                    <i class="bi bi-collection me-2 text-primary"></i>
+                    Sekcje Forum
+                </h2>
+
+                <div th:if="${sections != null and !sections.isEmpty()}">
+                    <div class="card mb-3 shadow-sm hover-lift"
+                         th:each="section : ${sections}">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <div class="rounded-circle bg-primary bg-opacity-10 p-3 d-flex align-items-center justify-content-center"
+                                         style="width: 64px; height: 64px;">
+                                        <i th:class="${section.thumbnail} + ' fs-2 text-primary'"
+                                           th:if="${section?.thumbnail?.startsWith('bi-')}"></i>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <h5 class="mb-1">
+                                        <a th:href="@{/section/{slug}(slug=${section.slug})}"
+                                           class="text-decoration-none text-dark stretched-link"
+                                           th:text="${section.name}">
+                                            Nazwa sekcji
+                                        </a>
+                                    </h5>
+                                    <p class="text-muted mb-0 small"
+                                       th:text="${section.description}">
+                                        Opis sekcji forum
+                                    </p>
+                                    <span class="badge bg-light text-dark mt-1"
+                                          th:if="${section.parent != null}">
+                                        <i class="bi bi-folder me-1"></i>
+                                        <span th:text="${section.parent.name}">Kategoria nadrzędna</span>
+                                    </span>
+                                </div>
+
+                                <div class="col-auto text-center d-none d-md-block">
+                                    <div class="mb-2">
+                                        <i class="bi bi-chat-left-text text-primary me-1"></i>
+                                        <strong th:text="${section.topicsCount ?: '0'}">0</strong>
+                                        <small class="text-muted d-block">tematów</small>
+                                    </div>
+                                </div>
+                                <div class="col-auto text-center d-none d-md-block">
+                                    <div class="mb-2">
+                                        <i class="bi bi-chat-dots text-success me-1"></i>
+                                        <strong th:text="${section.postsCount ?: '0'}">0</strong>
+                                        <small class="text-muted d-block">postów</small>
+                                    </div>
+                                </div>
+
+                                <div class="col-auto d-none d-lg-block" style="width: 200px;">
+                                    <div class="d-flex align-items-center"
+                                         th:if="${section.lastPost != null}">
+                                        <img th:src="${section.lastPost.author?.avatar ?: '/images/default-avatar.png'}"
+                                             class="rounded-circle me-2"
+                                             width="32" height="32" alt="Avatar">
+                                        <div class="small">
+                                            <a th:href="@{/post/{id}(id=${section.lastPost.id})}"
+                                               class="text-decoration-none text-truncate d-block"
+                                               th:text="${section.lastPost.title}">
+                                                Tytuł ostatniego posta
+                                            </a>
+                                            <span class="text-muted"
+                                                  th:text="${section.lastPost.createdAt}">
+                                                5 minut temu
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div th:if="${section.lastPost == null}" class="text-muted small">
+                                        <i class="bi bi-inbox"></i> Brak aktywności
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow-sm">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0 d-flex align-items-center">
+                        <i class="bi bi-activity me-2 text-success"></i>
+                        Ostatnia aktywność
+                    </h5>
+                </div>
+                <div class="list-group list-group-flush">
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between align-items-start">
+                            <div class="d-flex align-items-center">
+                                <div class="rounded-circle me-3 d-flex align-items-center justify-content-center"
+                                     th:style="'width: 40px; height: 40px; background-color: ' + ${userAvatarColor} + ';'"
+                                     th:aria-label="'Avatar użytkownika ' + ${username}">
+                                    <i class="bi bi-person-fill text-white" style="font-size: 1.2rem;"></i>
+                                </div>
+
+                                <div>
+                                    <h6 class="mb-1">Jak zoptymalizować zapytania SQL?</h6>
+                                    <small class="text-muted">
+                                        <i class="bi bi-person-fill me-1"></i>JavaDev123
+                                        <i class="bi bi-folder-fill ms-2 me-1"></i>Bazy danych
+                                    </small>
+                                </div>
+                            </div>
+                            <small class="text-muted">5 min temu</small>
+                        </div>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between align-items-start">
+                            <div class="d-flex align-items-center">
+                                <div class="rounded-circle me-3 d-flex align-items-center justify-content-center"
+                                     th:style="'width: 40px; height: 40px; background-color: ' + ${userAvatarColor} + ';'"
+                                     th:aria-label="'Avatar użytkownika ' + ${username}">
+                                    <i class="bi bi-person-fill text-white" style="font-size: 1.2rem;"></i>
+                                </div>
+
+                                <div>
+                                    <h6 class="mb-1">Polecany procesor do gier 2026?</h6>
+                                    <small class="text-muted">
+                                        <i class="bi bi-person-fill me-1"></i>PCGamer
+                                        <i class="bi bi-folder-fill ms-2 me-1"></i>Sprzęt PC
+                                    </small>
+                                </div>
+                            </div>
+                            <small class="text-muted">12 min temu</small>
+                        </div>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between align-items-start">
+                            <div class="d-flex align-items-center">
+                                <div class="rounded-circle me-3 d-flex align-items-center justify-content-center"
+                                     th:style="'width: 40px; height: 40px; background-color: ' + ${userAvatarColor} + ';'"
+                                     th:aria-label="'Avatar użytkownika ' + ${username}">
+                                    <i class="bi bi-person-fill text-white" style="font-size: 1.2rem;"></i>
+                                </div>
+
+                                <div>
+                                    <h6 class="mb-1">Spring Boot 3.3 - co nowego?</h6>
+                                    <small class="text-muted">
+                                        <i class="bi bi-person-fill me-1"></i>SpringMaster
+                                        <i class="bi bi-folder-fill ms-2 me-1"></i>Programowanie
+                                    </small>
+                                </div>
+                            </div>
+                            <small class="text-muted">1 godz. temu</small>
+                        </div>
+                    </a>
+                </div>
+                <div class="card-footer text-center bg-white">
+                    <a href="#" class="btn btn-outline-primary btn-sm">
+                        Zobacz wszystkie <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                </div>
+            </div>
+
+        </main>
+
+        <th:block th:replace="~{layout/fragments/sidebar :: sidebar}"></th:block>
+    </div>
+</div>
+</html>

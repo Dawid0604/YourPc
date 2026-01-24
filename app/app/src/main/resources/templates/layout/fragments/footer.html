@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<footer th:fragment="footer" class="bg-dark text-white mt-5">
+    <div class="container-fluid py-5">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                <h5 class="text-uppercase mb-3">
+                    <i class="bi bi-pc-display-horizontal me-2"></i>
+                    YourPc Forum
+                </h5>
+                <p class="text-white-50">
+                    Społeczność pasjonatów technologii, programowania i sprzętu komputerowego.
+                    Dziel się wiedzą, zadawaj pytania i rozwijaj swoje umiejętności!
+                </p>
+                <div class="d-flex gap-3">
+                    <a href="#" class="text-white-50 fs-4" aria-label="Facebook">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+                    <a href="#" class="text-white-50 fs-4" aria-label="Twitter">
+                        <i class="bi bi-twitter-x"></i>
+                    </a>
+                    <a href="#" class="text-white-50 fs-4" aria-label="GitHub">
+                        <i class="bi bi-github"></i>
+                    </a>
+                    <a href="#" class="text-white-50 fs-4" aria-label="Discord">
+                        <i class="bi bi-discord"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                <h5 class="text-uppercase mb-3">Forum</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <a th:href="@{/}" class="text-white-50 text-decoration-none">
+                            <i class="bi bi-chevron-right me-1"></i>Strona główna
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a th:href="@{/sections}" class="text-white-50 text-decoration-none">
+                            <i class="bi bi-chevron-right me-1"></i>Wszystkie sekcje
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a th:href="@{/recent}" class="text-white-50 text-decoration-none">
+                            <i class="bi bi-chevron-right me-1"></i>Ostatnie posty
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a th:href="@{/members}" class="text-white-50 text-decoration-none">
+                            <i class="bi bi-chevron-right me-1"></i>Członkowie
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                <h5 class="text-uppercase mb-3">Pomoc i wsparcie</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <a th:href="@{/rules}" class="text-white-50 text-decoration-none">
+                            <i class="bi bi-chevron-right me-1"></i>Regulamin forum
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a th:href="@{/faq}" class="text-white-50 text-decoration-none">
+                            <i class="bi bi-chevron-right me-1"></i>FAQ
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a th:href="@{/contact}" class="text-white-50 text-decoration-none">
+                            <i class="bi bi-chevron-right me-1"></i>Kontakt
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a th:href="@{/privacy}" class="text-white-50 text-decoration-none">
+                            <i class="bi bi-chevron-right me-1"></i>Polityka prywatności
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-uppercase mb-3">Newsletter</h5>
+                <p class="text-white-50 small">
+                    Otrzymuj powiadomienia o najważniejszych wydarzeniach na forum
+                </p>
+                <form th:action="@{/newsletter/subscribe}" method="post">
+                    <div class="input-group mb-3">
+                        <input type="email"
+                               class="form-control"
+                               placeholder="Twój email"
+                               name="email"
+                               required
+                               aria-label="Email do newslettera">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="bi bi-envelope-fill"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-black bg-opacity-50 py-3">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <small class="text-white-50">
+                        © 2026 YourPc Forum. Wszelkie prawa zastrzeżone.
+                    </small>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <small class="text-white-50">
+                        Stworzone z <i class="bi bi-heart-fill text-danger"></i>
+                        przez społeczność IT
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</html>

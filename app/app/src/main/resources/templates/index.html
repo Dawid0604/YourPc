@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pl"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <th:block th:replace="~{layout/fragments/head :: head}"></th:block>
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">YourPc Forum</title>
+    <th:block layout:fragment="styles"></th:block>
+</head>
+
+<body>
+<th:block th:replace="~{layout/fragments/header :: header}"></th:block>
+
+<main class="container my-4">
+    <section layout:fragment="content">
+        <th:block th:replace="~{layout/start-page :: start-page}"></th:block>
+    </section>
+</main>
+
+<th:block th:replace="~{layout/fragments/footer :: footer}"></th:block>
+</body>
+</html>
