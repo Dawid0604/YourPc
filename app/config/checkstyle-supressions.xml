@@ -6,6 +6,7 @@
 <suppressions>
     <suppress checks=".*" files=".*[\\/]generated[\\/].*"/>
     <suppress checks=".*" files=".*[\\/]target[\\/].*"/>
+    <suppress checks=".*" files=".*[\\/]test[\\/].*"/>
 
     <suppress checks="HideUtilityClassConstructor" files=".*Application\.java$"/>
     <suppress checks="HideUtilityClassConstructor" files="Test.*Application\.java$"/>

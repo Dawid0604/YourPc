@@ -198,6 +198,7 @@
                     <violationSeverity>warning</violationSeverity>
                     <includeTestSourceDirectory>true</includeTestSourceDirectory>
                     <configLocation>config/checkstyle.xml</configLocation>
+                    <includeTestSourceDirectory>false</includeTestSourceDirectory>
                 </configuration>
 
                 <executions>
@@ -267,6 +268,7 @@
                     <rulesets>
                         <ruleset>config/pmd.xml</ruleset>
                     </rulesets>
+                    <includeTests>false</includeTests>
                 </configuration>
 
                 <executions>
