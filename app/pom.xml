@@ -57,6 +57,7 @@
 
         <slugify.version>3.0.7</slugify.version>
         <commons-lang3.version>3.20.0</commons-lang3.version>
+        <datafaker.version>2.5.3</datafaker.version>
 
         <spotless-aosp.version>1.24.0</spotless-aosp.version>
         <maven.build.timestamp.format>yyyy</maven.build.timestamp.format>
@@ -99,6 +100,12 @@
                 <groupId>pl.dawid0604</groupId>
                 <artifactId>user</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.datafaker</groupId>
+                <artifactId>datafaker</artifactId>
+                <version>${datafaker.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

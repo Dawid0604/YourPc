@@ -1,13 +1,13 @@
 /* Copyright 2026 YourPc */
 package pl.dawid0604.yourpc.structure.application.command;
 
-import static org.apache.commons.lang3.StringUtils.isBlank;
+import pl.dawid0604.yourpc.structure.domain.slug.Slug;
 
-public record FindSubSectionsCommand(String parentSlug) {
+public record FindSubSectionsCommand(Slug slug) {
 
     public FindSubSectionsCommand {
-        if (isBlank(parentSlug)) {
-            throw new IllegalArgumentException("ParentSlug cannot be null or blank");
+        if (slug == null) {
+            throw new IllegalArgumentException("Slug cannot be null or blank");
         }
     }
 }

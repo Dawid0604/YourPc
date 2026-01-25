@@ -18,7 +18,7 @@ final class SectionEntityMapper {
                 .id(section.getId())
                 .parent(toEntity(section.getParent()))
                 .name(section.getName())
-                .slug(section.getSlugValue())
+                .slug(section.getSlug())
                 .description(section.getDescription())
                 .thumbnail(section.getThumbnail())
                 .build();

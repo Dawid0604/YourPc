@@ -60,7 +60,7 @@ class SectionEntity {
     @PrePersist
     private void onCreate() {
         createdAt = LocalDateTime.now();
-        updatedAt = LocalDateTime.now();
+        updatedAt = createdAt;
     }
 
     @PreUpdate

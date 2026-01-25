@@ -41,10 +41,10 @@ public final class Section {
         this.name = trimToNull(name);
         this.thumbnail = trimToNull(thumbnail);
         this.description = trimToNull(description);
-        this.slug = slug != null ? slug : Slug.fromName(name);
+        this.slug = slug;
     }
 
-    public String getSlugValue() {
-        return slug != null ? slug.getValue() : null;
+    public String getSlug() {
+        return slug.getValue();
     }
 }

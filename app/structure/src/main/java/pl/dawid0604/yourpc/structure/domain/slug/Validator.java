@@ -2,17 +2,16 @@
 package pl.dawid0604.yourpc.structure.domain.slug;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
-import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 import java.util.regex.Pattern;
 
 final class Validator {
-    private static final Pattern VALID_SLUG_PATTERN = Pattern.compile("^[a-z0-9-]+$");
+    private static final Pattern VALID_SLUG_PATTERN = Pattern.compile("^[a-z0-9-_]+$");
 
     private Validator() {}
 
     static void requireValidSlug(final String slug) {
-        if (isNotBlank(slug) && !VALID_SLUG_PATTERN.matcher(slug).matches()) {
+        if (isBlank(slug) || !VALID_SLUG_PATTERN.matcher(slug).matches()) {
             throw new IllegalArgumentException(
                     "Invalid slug format: value=%s, expectedFormat=%s"
                             .formatted(slug, VALID_SLUG_PATTERN.pattern()));
